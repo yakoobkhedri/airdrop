@@ -1,0 +1,194 @@
+@font-face {
+    font-family: "Montserrat-Regular";
+    src: url('../fonts/Montserrat-Regular.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: "Montserrat-Bold";
+    src: url('../fonts/Montserrat-Bold.ttf') format("truetype");
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Montserrat-RegBular";
+    user-select: none;
+    background: linear-gradient(0deg, rgba(53, 239, 245, 0.973) 15%, rgb(0, 0, 0) 65%);
+    background: linear-gradient(0deg, rgba(229, 82, 249, 0.859) 25%, rgb(67, 1, 69) 85%);
+}
+
+.fw-bold {
+    font-family: "Montserrat-Bold";
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #1a1929;
+    border: none;
+}
+
+.nav-tabs .nav-link:hover {
+    border-color: transparent;
+}
+
+.bg-main {
+    background-color: #1ca4c3;
+}
+
+.bg-gray {
+    background-color: #c7c5c5;
+}
+
+.bg-gradient-blue {
+    background: rgb(193, 226, 243);
+    background: radial-gradient(circle, rgba(193, 226, 243, 1) 21%, rgba(89, 167, 195, 1) 100%);
+}
+
+.border-dashed-white-2 {
+    border: 2px dashed white;
+}
+
+.border-bl-dashed-2 {
+    border-bottom: 2px dashed black;
+    border-left: 2px dashed black;
+}
+
+.rounded-5 {
+    border-radius: 15px;
+}
+
+.rounded-12 {
+    border-radius: 12px;
+}
+
+.rounded-t-35 {
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+}
+
+.max-w-400 {
+    max-width: 400px;
+    width: 100%;
+}
+
+.w-16 {
+    width: 16px;
+}
+
+.w-18 {
+    width: 18px;
+}
+
+.w-26 {
+    width: 26px;
+}
+
+.w-34 {
+    width: 34px;
+}
+
+.w-36 {
+    width: 36px;
+}
+
+.w-45 {
+    width: 45px;
+}
+
+.w-60 {
+    width: 60px;
+}
+
+.w-259 {
+    width: 259px;
+}
+
+.h-16 {
+    height: 16px;
+}
+
+.h-18 {
+    height: 18px;
+}
+
+.h-26 {
+    height: 26px;
+}
+
+.h-34 {
+    height: 34px;
+}
+
+.h-36 {
+    height: 36px;
+}
+
+.h-45 {
+    height: 45px;
+}
+
+.h-60 {
+    height: 60px;
+}
+
+.h-259 {
+    height: 259px;
+}
+
+.min-h-55vh {
+    min-height: 55vh;
+}
+
+.fs-12 {
+    font-size: 12px;
+}
+
+.fs-14 {
+    font-size: 14px;
+}
+
+.fs-18 {
+    font-size: 18px;
+}
+
+.fs-24 {
+    font-size: 24px;
+}
+
+.circle {
+    background-image: url(../img/photo14625636206.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.progress-bar-striped {
+    background: linear-gradient(255deg, rgb(196, 226, 251) 1%, rgb(48, 168, 195) 60%);
+    background-size: auto;
+    background-size: 1rem 1rem;
+}
+
+/* click effect */
+.bubbly-button {
+    transition: transform ease-in 0.1s, box-shadow ease-in 0.25s;
+}
+
+.bubbly-button:active {
+    transform: scale(0.9);
+}
+
+@media screen and (max-width: 400px) {
+    .fs-sm-14 {
+        font-size: 14px !important;
+    }
+}
