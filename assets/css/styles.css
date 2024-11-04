@@ -15,8 +15,8 @@ html {
 body {
     font-family: "Montserrat-RegBular";
     user-select: none;
-    background: linear-gradient(0deg, rgba(53, 239, 245, 0.973) 15%, rgb(0, 0, 0) 65%);
-    background: linear-gradient(0deg, rgba(229, 82, 249, 0.859) 25%, rgb(67, 1, 69) 85%);
+    background: #471d71;
+    background: radial-gradient(circle, rgba(16,13,42,1) 21%, rgba(71,29,113,1) 65%);
 }
 
 .fw-bold {
@@ -38,9 +38,11 @@ a {
 }
 
 .bg-main {
-    background-color: #1ca4c3;
+    background-color: #5f3b8d;
 }
-
+.bg-blue{
+    background-color: #281449;
+}
 .bg-gray {
     background-color: #c7c5c5;
 }
@@ -49,7 +51,9 @@ a {
     background: rgb(193, 226, 243);
     background: radial-gradient(circle, rgba(193, 226, 243, 1) 21%, rgba(89, 167, 195, 1) 100%);
 }
-
+.border-purple{
+    border:1px solid #a16ad7 !important;
+}
 .border-dashed-white-2 {
     border: 2px dashed white;
 }
@@ -58,7 +62,9 @@ a {
     border-bottom: 2px dashed black;
     border-left: 2px dashed black;
 }
-
+.shadow-purple{
+    box-shadow: 0 0 28px 26px #471d71;
+}
 .rounded-5 {
     border-radius: 15px;
 }
@@ -96,7 +102,9 @@ a {
 .w-36 {
     width: 36px;
 }
-
+.w-37 {
+    width: 37px;
+}
 .w-45 {
     width: 45px;
 }
@@ -129,14 +137,18 @@ a {
     height: 36px;
 }
 
+.h-37 {
+    height: 37px;
+}
+.h-37 {
+    height: 37px;
+}
 .h-45 {
     height: 45px;
 }
-
 .h-60 {
     height: 60px;
 }
-
 .h-259 {
     height: 259px;
 }
@@ -186,7 +198,12 @@ a {
 .bubbly-button:active {
     transform: scale(0.93);
 }
-
+.activeEffect{
+    transition: all .4s;
+}
+.activeEffect:active{
+    transform: scale(0.93);
+}
 @media screen and (max-width: 400px) {
     .fs-sm-14 {
         font-size: 14px !important;
