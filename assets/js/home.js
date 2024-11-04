@@ -18,6 +18,9 @@ let user_data = Boolean(localStorage.getItem("airdrop"))
       activeBot: { price: 1000, level: 1 },
       energyTime: 1,
     };
+
+let isTouch = false;
+
 localStorage.setItem("airdrop", JSON.stringify(user_data));
 // set values
 function setValues() {
@@ -45,39 +48,47 @@ addChargeHand();
 //   icon: "info",
 //   confirmButtonText: "تایید",
 // });
-miningButton.addEventListener("click", function (e) {
-  let plusCoin = user_data.coinLimited;
-  if (user_data.turbo.status) {
-    if (user_data.turbo.endTime > Date.now())
-      plusCoin = user_data.coinLimited + user_data.turbo.plusCoin;
-    else {
-      user_data.turbo.endTime = null;
-      user_data.turbo.status = false;
-      localStorage.setItem("airdrop", JSON.stringify(user_data));
+function touchCoin(e) {
+  e.preventDefault();
+  Array.from(e.touches).forEach((touch) => {
+    let plusCoin = user_data.coinLimited;
+    if (user_data.turbo.status) {
+      if (user_data.turbo.endTime > Date.now())
+        plusCoin = user_data.coinLimited + user_data.turbo.plusCoin;
+      else {
+        user_data.turbo.endTime = null;
+        user_data.turbo.status = false;
+        localStorage.setItem("airdrop", JSON.stringify(user_data));
+      }
     }
-  }
-  if (user_data.userAllCharge - plusCoin < 0) return;
-  if (user_data.userAllCharge <= 0) {
-    addChargeHand();
-  }
-  let coin = document.createElement(`div`);
-  let x = e.clientX,
-    y = e.clientY;
-  coin.classList.add("coinPlus");
-  coin.textContent = plusCoin;
-  let style = `left:${x - coin.scrollWidth}px;top:${y - coin.scrollHeight}px;`;
-  coin.style = style;
-  document.body.appendChild(coin);
-  user_data.userAllCoins += plusCoin;
-  user_data.userAllCharge = user_data.userAllCharge - plusCoin;
-  setValues();
-  localStorage.setItem("airdrop", JSON.stringify(user_data));
+    if (user_data.userAllCharge - plusCoin < 0) return;
+    if (user_data.userAllCharge <= 0) {
+      addChargeHand();
+    }
+    let coin = document.createElement(`div`);
+    let x = touch.clientX,
+      y = touch.clientY;
+    coin.classList.add("coinPlus");
+    coin.textContent = plusCoin;
+    let style = `left:${x - coin.scrollWidth}px;top:${
+      y - coin.scrollHeight
+    }px;`;
+    coin.style = style;
+    document.body.appendChild(coin);
+    user_data.userAllCoins += plusCoin;
+    user_data.userAllCharge = user_data.userAllCharge - plusCoin;
+    setValues();
+    localStorage.setItem("airdrop", JSON.stringify(user_data));
 
-  setTimeout(() => {
-    coin.remove();
-  }, 800);
+    setTimeout(() => {
+      coin.remove();
+    }, 800);
+  });
+}
+
+miningButton.addEventListener("touchstart", function (e) {
+  touchCoin(e);
 });
-
 rechargeActive.addEventListener("click", () => {
   if (
     user_data.recharge.use >= user_data.recharge.limit ||
