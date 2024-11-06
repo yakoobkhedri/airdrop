@@ -43,52 +43,51 @@ function addChargeHand() {
   }, user_data.energyTime * 1000);
 }
 addChargeHand();
-// Swal.fire({
-//   text: res,
-//   icon: "info",
-//   confirmButtonText: "تایید",
-// });
-function touchCoin(e) {
-  e.preventDefault();
-  Array.from(e.touches).forEach((touch) => {
-    let plusCoin = user_data.coinLimited;
-    if (user_data.turbo.status) {
-      if (user_data.turbo.endTime > Date.now())
-        plusCoin = user_data.coinLimited + user_data.turbo.plusCoin;
-      else {
-        user_data.turbo.endTime = null;
-        user_data.turbo.status = false;
-        localStorage.setItem("airdrop", JSON.stringify(user_data));
-      }
-    }
-    if (user_data.userAllCharge - plusCoin < 0) return;
-    if (user_data.userAllCharge <= 0) {
-      addChargeHand();
-    }
-    let coin = document.createElement(`div`);
-    let x = touch.clientX,
-      y = touch.clientY;
-    coin.classList.add("coinPlus");
-    coin.textContent = plusCoin;
-    let style = `left:${x - coin.scrollWidth}px;top:${
-      y - coin.scrollHeight
-    }px;`;
-    coin.style = style;
-    document.body.appendChild(coin);
-    user_data.userAllCoins += plusCoin;
-    user_data.userAllCharge = user_data.userAllCharge - plusCoin;
-    setValues();
-    localStorage.setItem("airdrop", JSON.stringify(user_data));
 
-    setTimeout(() => {
-      coin.remove();
-    }, 800);
-  });
+function touchCoin(x, y) {
+  let plusCoin = user_data.coinLimited;
+  if (user_data.turbo.status) {
+    if (user_data.turbo.endTime > Date.now())
+      plusCoin = user_data.coinLimited + user_data.turbo.plusCoin;
+    else {
+      user_data.turbo.endTime = null;
+      user_data.turbo.status = false;
+      localStorage.setItem("airdrop", JSON.stringify(user_data));
+    }
+  }
+  if (user_data.userAllCharge - plusCoin < 0) return;
+  if (user_data.userAllCharge <= 0) {
+    addChargeHand();
+  }
+  let coin = document.createElement(`div`);
+
+  coin.classList.add("coinPlus");
+  coin.textContent = plusCoin;
+  let style = `left:${x - coin.scrollWidth}px;top:${y - coin.scrollHeight}px;`;
+  coin.style = style;
+  document.body.appendChild(coin);
+  user_data.userAllCoins += plusCoin;
+  user_data.userAllCharge = user_data.userAllCharge - plusCoin;
+  setValues();
+  localStorage.setItem("airdrop", JSON.stringify(user_data));
+
+  setTimeout(() => {
+    coin.remove();
+  }, 800);
 }
 
-miningButton.addEventListener("touchstart", function (e) {
-  touchCoin(e);
-});
+if (matchMedia("(pointer:fine)").matches) {
+  miningButton.addEventListener("click", function (e) {
+    touchCoin(e.clientX, e.clientY);
+  });
+} else {
+  miningButton.addEventListener("touchstart", function (e) {
+    e.preventDefault();
+    Array.from(e.touches).forEach((touch) => {
+      touchCoin(touch.clientX, touch.clientY);
+    });
+  });
+}
 rechargeActive.addEventListener("click", () => {
   if (
     user_data.recharge.use >= user_data.recharge.limit ||

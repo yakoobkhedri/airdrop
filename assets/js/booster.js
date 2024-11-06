@@ -54,12 +54,17 @@ function upgradeSkil(skil) {
 turboActive.addEventListener("click", () => {
   if (user_data.turbo.status || user_data.turbo.use >= user_data.turbo.limit)
     return;
-
-  user_data.turbo.status = true;
-  user_data.turbo.use++;
-  user_data.turbo.status = true;
-  user_data.turbo.endTime = Date.now() + 1000 * 10;
-  setValues();
+  Swal.fire({
+    text: "Turbo",
+    icon: "info",
+    confirmButtonText: "use",
+  }).then((result) => {
+    user_data.turbo.status = true;
+    user_data.turbo.use++;
+    user_data.turbo.status = true;
+    user_data.turbo.endTime = Date.now() + 1000 * 10;
+    setValues();
+  });
 });
 rechargeActive.addEventListener("click", () => {
   if (
@@ -67,9 +72,15 @@ rechargeActive.addEventListener("click", () => {
     user_data.userAllCharge >= user_data.chargLimited
   )
     return;
-  user_data.recharge.use++;
-  user_data.userAllCharge = user_data.chargLimited;
-  setValues();
+  Swal.fire({
+    text: "Recharge",
+    icon: "info",
+    confirmButtonText: "use",
+  }).then(() => {
+    user_data.recharge.use++;
+    user_data.userAllCharge = user_data.chargLimited;
+    setValues();
+  });
 });
 
 upgradeMultiTap.addEventListener("click", () => {
